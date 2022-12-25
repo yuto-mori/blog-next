@@ -1,0 +1,58 @@
+@use '@/styles/global/variable' as VAR;
+@use 'sass:math';
+/******************************************************************************
+* mixin
+*******************************************************************************/
+// Media Queries
+@mixin MQ_ORIGINAL($MIN: VAR.$MD) {
+  @media only screen and (min-width: #{$MIN}) {
+    @content;
+  }
+}
+
+@mixin MQ_ABOVE_SM($MIN: VAR.$SM) {
+  @media only screen and (min-width: #{$MIN}) {
+    @content;
+  }
+}
+
+@mixin MQ_ABOVE_MD($MIN: VAR.$MD) {
+  @media only screen and (min-width: #{$MIN}) {
+    @content;
+  }
+}
+
+@mixin MQ_ABOVE_LG($MIN: VAR.$LG) {
+  @media only screen and (min-width: #{$MIN}) {
+    @content;
+  }
+}
+
+@mixin MQ_ABOVE_XL($MIN: VAR.$XL) {
+  @media only screen and (min-width: #{$MIN}) {
+    @content;
+  }
+}
+
+@mixin MQ_ABOVE_HD($MIN: VAR.$HD) {
+  @media only screen and (min-width: #{$MIN}) {
+    @content;
+  }
+}
+
+@mixin MQ_ANY_HOVER($value: hover) {
+  @media (any-hover: #{$value}), (-ms-high-contrast:none) {
+    @content;
+  }
+}
+
+// fontSize の取得式
+@mixin FONT_SP($SIZE: VAR.$FONT_SIZE_BASE_SP, $VIEWPORT: VAR.$SP_BASE_WIDTH) {
+  // font-size: calc(($SIZE / 16) * 16rem) ;
+  font-size: calc(#{$SIZE} / #{$VIEWPORT} * 100vw);
+}
+
+@mixin FONT_PC($SIZE: VAR.$FONT_SIZE_BASE_PC) {
+  // font-size: $SIZE + px;
+  font-size: calc(#{$SIZE} / 16 * 1rem);
+}

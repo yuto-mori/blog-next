@@ -1,0 +1,14 @@
+@use '@/styles/global/' as G;
+
+/******************************************************************************
+* common
+*******************************************************************************/
+body {
+  font-family: G.$FONT_FAMILY_BASE;
+  line-height: G.$LINE_HEIGHT_BASE;
+  color: G.$FONT_COLOR_BASE;
+  @include G.FONT_SP(G.$FONT_SIZE_BASE_SP);
+  @include G.MQ_ABOVE_MD {
+    @include G.FONT_PC(G.$FONT_SIZE_BASE_PC);
+  }
+}
