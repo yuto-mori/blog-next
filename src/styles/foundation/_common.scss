@@ -3,6 +3,9 @@
 /******************************************************************************
 * common
 *******************************************************************************/
+html {
+  scrollbar-gutter: stable;
+}
 body {
   font-family: G.$FONT_FAMILY_BASE;
   line-height: G.$LINE_HEIGHT_BASE;
