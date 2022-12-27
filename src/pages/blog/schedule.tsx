@@ -1,21 +1,46 @@
-import { client } from '@/lib/api';
+interface contents {
+  title: string;
+  publish: string;
+  content: string;
+  hero: hero;
+  tags: tags[];
+}
+interface hero {
+  url: string;
+  height: number;
+  width: number;
+}
+interface tags {
+  id: string;
+  createdAt: string;
+  updatedAt: string;
+  publishedAt: string;
+  name: string;
+  slug: string;
+}
+import { getPostBySlug } from '@/lib/api';
 
-export default function Schedule() {
-  return <h1> 記事のタイトル </h1>;
+export default function Schedule({
+  title,
+  publish,
+  content,
+  hero,
+  tags,
+}: contents) {
+  return <h1> {title} </h1>;
 }
 
 export async function getStaticProps() {
-  const resPromise = client.get({
-    endpoint: 'blogs',
-  });
-  try {
-    const res = await resPromise;
-    console.log(res);
-  } catch (err) {
-    console.log(err);
-  }
+  const slug = 'eldenring0';
+  const post = await getPostBySlug(slug);
 
   return {
-    props: {},
+    props: {
+      title: post.title,
+      publish: post.publishDate,
+      content: post.content,
+      hero: post.hero,
+      tags: post.tags,
+    },
   };
 }
