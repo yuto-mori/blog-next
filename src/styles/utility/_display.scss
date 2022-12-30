@@ -1,0 +1,16 @@
+@use '@/styles/global/' as G;
+@use 'sass:math';
+@use 'sass:map';
+
+/******************************************************************************
+ * display
+*******************************************************************************/
+$DISPLAY_BOOL: false !default;
+
+@if $DISPLAY_BOOL {
+  $PROPERTY: 'display';
+  $VALUES: none, block, grid, flex, inline-block;
+  $PREFIX: 'd';
+
+  @include G.SET_BLAKE_POINT($VALUES, $PROPERTY, $PREFIX);
+}

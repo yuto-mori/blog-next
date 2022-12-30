@@ -1,0 +1,160 @@
+@use '@/styles/global/' as G;
+@use 'sass:math';
+@use 'sass:map';
+
+/* ---------------------------------------------------------
+ * spacing
+--------------------------------------------------------- */
+// spacing関連のutillty
+// margin
+// padding
+
+$MARGIN_BOOL: false !default;
+$PADDING_BOOL: false !default;
+$STEP_NUM: 4;
+$STEP_NUM_MAX: 80;
+$LOOP_VALUE: math.floor(math.div($STEP_NUM_MAX, $STEP_NUM));
+
+@mixin MARGIN_LR($PROPERTY, $KEY, $CLASS_VALUE_LIST) {
+  .#{to-lower-case($KEY)}\:#{$PROPERTY} {
+    &:not(:root) {
+      margin-right: map.get($CLASS_VALUE_LIST, right);
+      margin-left: map.get($CLASS_VALUE_LIST, left);
+    }
+  }
+}
+
+@if $MARGIN_BOOL {
+  // $className, $classValue
+  $MARGIN_LIST: (
+    margin-lr-auto: (
+      left: auto,
+      right: auto,
+    ),
+    margin-lr-0: (
+      left: 0,
+      right: 0,
+    ),
+  );
+  [class*='mgt'] {
+    margin-top: var(--margin-top);
+  }
+  @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
+    @if $KEY == DEFAULT {
+      @for $i from 0 through math.div($LOOP_VALUE, 2) {
+        @if $i == 0 {
+          .mgt-0 {
+            --margin-top: 0;
+          }
+        } @else {
+          .mgt-#{$STEP_NUM * $i} {
+            --margin-top: #{G.VW(#{$STEP_NUM * $i * 2})};
+          }
+        }
+      }
+      @each $CLASS_KEY, $CLASS_VALUE_LIST in $MARGIN_LIST {
+        @if $CLASS_KEY == margin-lr-auto or margin-lr-0 {
+          .#{$CLASS_KEY} {
+            &:not(:root) {
+              margin-right: map.get($CLASS_VALUE_LIST, right);
+              margin-left: map.get($CLASS_VALUE_LIST, left);
+            }
+          }
+        }
+      }
+    } @else {
+      @include G.MQ_ORIGINAL($VALUE) {
+        @for $i from 0 through $LOOP_VALUE {
+          @if $i == 0 {
+            .#{to-lower-case($KEY)}\:mgt-0 {
+              --margin-top: 0;
+            }
+          } @else {
+            .#{to-lower-case($KEY)}\:mgt-#{$STEP_NUM * $i} {
+              --margin-top: #{$STEP_NUM * $i}px;
+            }
+          }
+        }
+        @each $CLASS_KEY, $CLASS_VALUE_LIST in $MARGIN_LIST {
+          @if $CLASS_KEY == margin-lr-auto or margin-lr-0 {
+            @if $CLASS_KEY == margin-lr-auto {
+              @include MARGIN_LR(margin-lr-auto, $KEY, $CLASS_VALUE_LIST);
+            } @else {
+              @include MARGIN_LR(margin-lr-0, $KEY, $CLASS_VALUE_LIST);
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@if $PADDING_BOOL {
+  /* padding
+  -------------------------------------------------- */
+  [class*='pdt'] {
+    padding-top: var(--padding-top);
+  }
+  @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
+    @if $KEY == DEFAULT {
+      @for $i from 0 through math.div($LOOP_VALUE, 2) {
+        @if $i == 0 {
+          .pdt-0 {
+            --padding-top: 0;
+          }
+        } @else {
+          .pdt-#{$STEP_NUM * $i} {
+            --padding-top: #{G.VW(#{$STEP_NUM * $i * 2})};
+          }
+        }
+      }
+    } @else {
+      @include G.MQ_ORIGINAL($VALUE) {
+        @for $i from 0 through $LOOP_VALUE {
+          @if $i == 0 {
+            .#{to-lower-case($KEY)}\:pdt-0 {
+              --padding-top: 0;
+            }
+          } @else {
+            .#{to-lower-case($KEY)}\:pdt-#{$STEP_NUM * $i} {
+              --padding-top: #{$STEP_NUM * $i}px;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  [class*='pdb'] {
+    padding-bottom: var(--padding-bottom);
+  }
+  @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
+    @if $KEY == DEFAULT {
+      @for $i from 0 through math.div($LOOP_VALUE, 2) {
+        @if $i == 0 {
+          .pdb-0 {
+            --padding-bottom: 0;
+          }
+        } @else {
+          .pdb-#{$STEP_NUM * $i} {
+            --padding-bottom: #{G.VW(#{$STEP_NUM * $i * 2})};
+          }
+        }
+      }
+    } @else {
+      @include G.MQ_ORIGINAL($VALUE) {
+        @for $i from 0 through $LOOP_VALUE {
+          @if $i == 0 {
+            .#{to-lower-case($KEY)}\:pdb-0 {
+              --padding-bottom: 0;
+            }
+          } @else {
+            .#{to-lower-case($KEY)}\:pdb-#{$STEP_NUM * $i} {
+              --padding-bottom: #{$STEP_NUM * $i}px;
+            }
+          }
+        }
+      }
+    }
+  }
+}

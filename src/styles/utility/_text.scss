@@ -1,0 +1,15 @@
+@use '@/styles/global/' as G;
+@use 'sass:math';
+@use 'sass:map';
+
+/******************************************************************************
+ * text-align
+*******************************************************************************/
+$TEXT_ALIGN_BOOL: false !default;
+@if $TEXT_ALIGN_BOOL {
+  $PROPERTY: 'text-align';
+  $VALUES: center, left, right;
+  $PREFIX: $PROPERTY;
+
+  @include G.SET_BLAKE_POINT($VALUES, $PROPERTY, $PREFIX);
+}

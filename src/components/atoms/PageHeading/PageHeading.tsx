@@ -1,4 +1,5 @@
 import styles from '@/components/atoms/PageHeading/PageHeading.module.scss';
+
 interface props {
   heading: string;
 }

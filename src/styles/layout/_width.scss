@@ -1,0 +1,58 @@
+@use '@/styles/global/' as G;
+@use 'sass:math';
+@use 'sass:map';
+
+/******************************************************************************
+ * width
+*******************************************************************************/
+$WIDTH_BOOL: false !default;
+@if $WIDTH_BOOL {
+  $WIDTH_LIST: (
+    DEFAULT: (
+      auto,
+      315,
+    ),
+    MD: (
+      auto,
+      1000,
+    ),
+  );
+  [class*='width'] {
+    @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
+      @each $WIDTH_KEY, $WIDTH_SIZE_LIST in $WIDTH_LIST {
+        @if $KEY == $WIDTH_KEY {
+          @if $KEY == DEFAULT {
+            width: var(--content-width, 100%);
+            @each $NUM in $WIDTH_SIZE_LIST {
+              @if $NUM == auto {
+                &.width-#{$NUM} {
+                  --content-width: auto;
+                }
+              } @else {
+                &.width-#{$NUM} {
+                  --content-width: #{G.VW($NUM * 2)};
+                }
+              }
+            }
+          } @else {
+            @include G.MQ_ORIGINAL($VALUE) {
+              width: 100%;
+              max-width: calc(var(--content-width) * 1px);
+              @each $NUM in $WIDTH_SIZE_LIST {
+                @if $NUM == auto {
+                  &.#{to-lower-case($KEY)}\:width-#{$NUM} {
+                    width: auto;
+                  }
+                } @else {
+                  &.#{to-lower-case($KEY)}\:width-#{$NUM} {
+                    --content-width: #{$NUM};
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

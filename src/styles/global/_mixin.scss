@@ -34,6 +34,12 @@
   }
 }
 
+@mixin MQ_ABOVE_2XL($MIN: VAR.$TWO-XL) {
+  @media only screen and (min-width: #{$MIN}) {
+    @content;
+  }
+}
+
 @mixin MQ_ABOVE_HD($MIN: VAR.$HD) {
   @media only screen and (min-width: #{$MIN}) {
     @content;
@@ -55,4 +61,29 @@
 @mixin FONT_PC($SIZE: VAR.$FONT_SIZE_BASE_PC) {
   // font-size: $SIZE + px;
   font-size: calc(#{$SIZE} / 16 * 1rem);
+}
+
+// utilityのスタイルをセットする
+@mixin SET_STYLE($VALUES, $PROPERTY, $PREFIX) {
+  @each $VALUE in $VALUES {
+    .#{$PREFIX}-#{$VALUE} {
+      #{$PROPERTY}: #{$VALUE};
+    }
+  }
+}
+
+@mixin SET_BLAKE_POINT($VALUES, $PROPERTY, $PREFIX) {
+  @each $KEY, $VALUE in VAR.$BLAKE_POINT_LIST {
+    @if $KEY == DEFAULT {
+      @include SET_STYLE($VALUES, $PROPERTY, $PREFIX);
+    } @else {
+      @include MQ_ORIGINAL($VALUE) {
+        @include SET_STYLE(
+          $VALUES,
+          $PROPERTY,
+          '#{to-lower-case($KEY)}\\:#{$PREFIX}'
+        );
+      }
+    }
+  }
 }

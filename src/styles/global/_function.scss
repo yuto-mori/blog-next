@@ -4,7 +4,7 @@
 * 関数
 *******************************************************************************/
 // vw の取得式
-@function GET_VW($SIZE, $VIEWPORT: VAR.$SP_BASE_WIDTH) {
+@function VW($SIZE, $VIEWPORT: VAR.$SP_BASE_WIDTH) {
   @if $SIZE == 0 {
     @return 0;
   } @else {
@@ -16,7 +16,7 @@
 }
 
 // rem の取得式
-@function GET_REM($SIZE: 16) {
+@function REM($SIZE: 16) {
   @if $SIZE == 0 {
     @return 0;
   } @else {

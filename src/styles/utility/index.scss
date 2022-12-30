@@ -1,3 +1,5 @@
 /******************************************************************************
 * utility
 *******************************************************************************/
+@forward '@/styles/utility/display' with($DISPLAY_BOOL: true);
+@forward '@/styles/utility/text' with($TEXT_ALIGN_BOOL: true);

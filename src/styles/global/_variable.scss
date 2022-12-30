@@ -8,11 +8,19 @@
 $SP_BASE_WIDTH: 750;
 
 // mq-width
-$SM: 568px; // スマートフォン横持(iphone5。ほとんど使わない)
+// https://nerdcave.com/tailwind-cheat-sheet
+// container を参考
+$SM: 640px; // スマートフォン横持(iphone5。ほとんど使わない)
 $MD: 768px; // タブレット(ipad最小サイズからiphone Pro Max 横持ちまで)
 $LG: 1024px; // ノートPC
 $XL: 1280px; // 大画面モニタ(任意。デザインサイズプラス1)
+$TWO-XL: 1536px; // 大画面モニタ2
 $HD: 1921px; // hd以上
+
+$BLAKE_POINT_LIST: (
+  DEFAULT: null,
+  MD: $MD,
+);
 /* ---------------------------------------------------------
  * color
 --------------------------------------------------------- */
