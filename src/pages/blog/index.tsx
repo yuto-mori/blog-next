@@ -1,4 +1,4 @@
-import Meta from '@/components/common/Meta';
+import { Meta } from '@/components/common/Meta';
 
 export default function BlogTop() {
   return (

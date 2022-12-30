@@ -1,9 +1,9 @@
-import Text from '@/components/atoms/Text/Text';
+import { Text } from '@/components/atoms/Text/Text';
 
 interface props {
   textArray: string[];
 }
-export default function TextWrap({ textArray }: props) {
+export function TextWrap({ textArray }: props) {
   return (
     <div className="m-text-wrap">
       {textArray.map((text, i) => {

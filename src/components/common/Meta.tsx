@@ -9,7 +9,7 @@ interface props {
   pageTitle: string;
   pageDesc: string;
 }
-export default function Meta({ pageTitle, pageDesc }: props) {
+export function Meta({ pageTitle, pageDesc }: props) {
   const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
   const desc = pageDesc ?? siteDesc;
   const router = useRouter();
