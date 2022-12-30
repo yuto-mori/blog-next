@@ -1,3 +1,5 @@
+import { getPostBySlug } from '@/lib/api';
+
 interface contents {
   title: string;
   publish: string;
@@ -18,7 +20,6 @@ interface tags {
   name: string;
   slug: string;
 }
-import { getPostBySlug } from '@/lib/api';
 
 export default function Schedule({
   title,
