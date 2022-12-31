@@ -1,7 +1,5 @@
 import { ReactNode } from 'react';
 
-import { Footer } from '@/components/organisms/footer';
-import { Header } from '@/components/organisms/header';
 import { PageHead } from '@/components/organisms/PageHead/PageHead';
 
 interface Props {
@@ -11,10 +9,14 @@ interface Props {
 export function Layout({ children }: Props) {
   return (
     <>
-      <Header />
-      <PageHead />
-      <main>{children}</main>
-      <Footer />
+      <main>
+        <div className="l-wrap md:pdt-48 pdt-32">
+          <div className="l-container">
+            <PageHead />
+          </div>
+        </div>
+        {children}
+      </main>
     </>
   );
 }

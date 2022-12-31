@@ -1,3 +1,13 @@
+@use '@/styles/global/' as G;
+/******************************************************************************
+* page-heading
+*******************************************************************************/
 .heading {
+  --font-size: 24;
+  --font-weight: 700;
   line-height: 1;
+  text-align: center;
+  @include G.MQ_ABOVE_MD {
+    text-align: left;
+  }
 }

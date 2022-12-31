@@ -7,11 +7,12 @@ html {
   scrollbar-gutter: stable;
 }
 body {
-  font-family: G.$FONT_FAMILY_BASE;
-  line-height: G.$LINE_HEIGHT_BASE;
-  color: G.$FONT_COLOR_BASE;
-  @include G.FONT_SP(G.$FONT_SIZE_BASE_SP);
+  font-family: var(--font-family);
+  font-weight: var(--font-weight);
+  line-height: var(--line-height);
+  color: var(--font-color);
+  @include G.FONT_SP(var(--font-size));
   @include G.MQ_ABOVE_MD {
-    @include G.FONT_PC(G.$FONT_SIZE_BASE_PC);
+    @include G.FONT_PC(var(--font-size));
   }
 }

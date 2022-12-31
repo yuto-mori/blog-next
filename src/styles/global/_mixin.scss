@@ -55,7 +55,7 @@
 // fontSize の取得式
 @mixin FONT_SP($SIZE: VAR.$FONT_SIZE_BASE_SP, $VIEWPORT: VAR.$SP_BASE_WIDTH) {
   // font-size: calc(($SIZE / 16) * 16rem) ;
-  font-size: calc(#{$SIZE} / #{$VIEWPORT} * 100vw);
+  font-size: calc(#{$SIZE} / #{$VIEWPORT * VAR.$SP_WIDTH_SCALE} * 100vw);
 }
 
 @mixin FONT_PC($SIZE: VAR.$FONT_SIZE_BASE_PC) {

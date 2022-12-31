@@ -30,7 +30,7 @@ $WIDTH_BOOL: false !default;
                 }
               } @else {
                 &.width-#{$NUM} {
-                  --content-width: #{G.VW($NUM * 2)};
+                  --content-width: #{G.VW($NUM * G.$SP_WIDTH_SCALE)};
                 }
               }
             }

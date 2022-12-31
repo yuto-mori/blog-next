@@ -41,14 +41,14 @@ $LOOP_VALUE: math.floor(math.div($STEP_NUM_MAX, $STEP_NUM));
   }
   @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
     @if $KEY == DEFAULT {
-      @for $i from 0 through math.div($LOOP_VALUE, 2) {
+      @for $i from 0 through math.div($LOOP_VALUE, G.$SP_WIDTH_SCALE) {
         @if $i == 0 {
           .mgt-0 {
             --margin-top: 0;
           }
         } @else {
           .mgt-#{$STEP_NUM * $i} {
-            --margin-top: #{G.VW(#{$STEP_NUM * $i * 2})};
+            --margin-top: #{G.VW(#{$STEP_NUM * $i * G.$SP_WIDTH_SCALE})};
           }
         }
       }
@@ -97,14 +97,14 @@ $LOOP_VALUE: math.floor(math.div($STEP_NUM_MAX, $STEP_NUM));
   }
   @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
     @if $KEY == DEFAULT {
-      @for $i from 0 through math.div($LOOP_VALUE, 2) {
+      @for $i from 0 through math.div($LOOP_VALUE, G.$SP_WIDTH_SCALE) {
         @if $i == 0 {
           .pdt-0 {
             --padding-top: 0;
           }
         } @else {
           .pdt-#{$STEP_NUM * $i} {
-            --padding-top: #{G.VW(#{$STEP_NUM * $i * 2})};
+            --padding-top: #{G.VW(#{$STEP_NUM * $i * G.$SP_WIDTH_SCALE})};
           }
         }
       }
@@ -130,14 +130,14 @@ $LOOP_VALUE: math.floor(math.div($STEP_NUM_MAX, $STEP_NUM));
   }
   @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
     @if $KEY == DEFAULT {
-      @for $i from 0 through math.div($LOOP_VALUE, 2) {
+      @for $i from 0 through math.div($LOOP_VALUE, G.$SP_WIDTH_SCALE) {
         @if $i == 0 {
           .pdb-0 {
             --padding-bottom: 0;
           }
         } @else {
           .pdb-#{$STEP_NUM * $i} {
-            --padding-bottom: #{G.VW(#{$STEP_NUM * $i * 2})};
+            --padding-bottom: #{G.VW(#{$STEP_NUM * $i * G.$SP_WIDTH_SCALE})};
           }
         }
       }

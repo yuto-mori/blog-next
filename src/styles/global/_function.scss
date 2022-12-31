@@ -11,7 +11,7 @@
     // @return math.div($SIZE,$VIEWPORT) * 100vw;
 
     // calcだとbored-radius box-shadowなど使えないかかも
-    @return calc(#{$SIZE}/#{$VIEWPORT} * 100vw);
+    @return calc(#{$SIZE}/#{$VIEWPORT * VAR.$SP_WIDTH_SCALE} * 100vw);
   }
 }
 

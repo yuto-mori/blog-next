@@ -5,7 +5,9 @@
  * setting
 --------------------------------------------------------- */
 // 基準とするSPのサイズ
-$SP_BASE_WIDTH: 750;
+$SP_DESIGN_WIDTH: 375;
+$SP_BASE_WIDTH: 375;
+$SP_WIDTH_SCALE: $SP_DESIGN_WIDTH / $SP_BASE_WIDTH;
 
 // mq-width
 // https://nerdcave.com/tailwind-cheat-sheet
@@ -41,7 +43,7 @@ $FONT_FAMILY_BASE: -apple-system, BlinkMacSystemFont, 'Segoe UI',
   'Hiragino Sans', 'Hiragino Kaku Gothic ProN', Meiryo, sans-serif;
 
 // base-font-size
-$FONT_SIZE_BASE_SP: 14 * 2;
+$FONT_SIZE_BASE_SP: 14 * $SP_WIDTH_SCALE;
 $FONT_SIZE_BASE_TAB: null;
 $FONT_SIZE_BASE_PC: 16;
 

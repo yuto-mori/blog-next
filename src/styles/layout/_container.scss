@@ -1,0 +1,48 @@
+@use '@/styles/global/' as G;
+
+/* ---------------------------------------------------------
+ * container
+--------------------------------------------------------- */
+.l-wrap {
+  --page-lr-padding: 17;
+  padding-right: G.VW(var(--page-lr-padding));
+  padding-left: G.VW(var(--page-lr-padding));
+  margin: 0 auto;
+  &.is-full {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  @include G.MQ_ABOVE_MD {
+    --page-lr-padding: 28;
+    width: 100%;
+    padding-right: calc(var(--page-lr-padding) * 1px);
+    padding-left: calc(var(--page-lr-padding) * 1px);
+  }
+}
+
+.l-container {
+  --content-width: 336;
+  width: G.VW(var(--content-width));
+  margin-right: auto;
+  margin-left: auto;
+  @include G.MQ_ABOVE_MD {
+    --content-width: 1124;
+    width: 100%;
+    max-width: calc(var(--content-width) * 1px);
+  }
+}
+.l-inner {
+  width: 100%;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.is-full {
+  width: auto;
+  margin-right: calc(#{G.VW(var(--page-lr-padding))} * -1);
+  margin-left: calc(#{G.VW(var(--page-lr-padding))} * -1);
+  @include G.MQ_ABOVE_MD {
+    margin-right: calc(var(--page-lr-padding) * -1px);
+    margin-left: calc(var(--page-lr-padding) * -1px);
+  }
+}

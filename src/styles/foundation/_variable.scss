@@ -3,5 +3,12 @@
 * css 変数
 *******************************************************************************/
 :root {
+  --font-family: #{G.$FONT_FAMILY_BASE};
+  --font-size: #{G.$FONT_SIZE_BASE_SP};
   --font-color: #{G.$FONT_COLOR_BASE};
+  --font-weight: 400;
+  --line-height: #{G.$LINE_HEIGHT_BASE};
+  @include G.MQ_ABOVE_MD {
+    --font-size: #{G.$FONT_SIZE_BASE_PC};
+  }
 }
