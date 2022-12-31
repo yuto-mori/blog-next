@@ -2,9 +2,9 @@ import { ReactNode } from 'react';
 
 import { PageHead } from '@/components/organisms/PageHead/PageHead';
 
-interface Props {
+type Props = {
   children: ReactNode;
-}
+};
 
 export function Layout({ children }: Props) {
   return (

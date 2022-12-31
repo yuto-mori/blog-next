@@ -5,10 +5,10 @@ import { siteMeta } from '@/lib/constants';
 
 const { siteTitle, siteDesc, siteUrl } = siteMeta;
 
-interface props {
+type props = {
   pageTitle: string;
   pageDesc: string;
-}
+};
 export function Meta({ pageTitle, pageDesc }: props) {
   const title = pageTitle ? `${pageTitle} | ${siteTitle}` : siteTitle;
   const desc = pageDesc ?? siteDesc;

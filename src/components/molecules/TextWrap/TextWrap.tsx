@@ -1,9 +1,9 @@
 import { Text } from '@/components/atoms/Text/Text';
 
-interface props {
+type props = {
   addClasses?: string[];
   textArray: string[];
-}
+};
 export function TextWrap({ textArray, addClasses }: props) {
   return (
     <div

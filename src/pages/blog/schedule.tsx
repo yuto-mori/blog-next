@@ -1,25 +1,25 @@
 import { getPostBySlug } from '@/lib/api';
 
-interface contents {
+type contents = {
   title: string;
   publish: string;
   content: string;
   hero: hero;
   tags: tags[];
-}
-interface hero {
+};
+type hero = {
   url: string;
   height: number;
   width: number;
-}
-interface tags {
+};
+type tags = {
   id: string;
   createdAt: string;
   updatedAt: string;
   publishedAt: string;
   name: string;
   slug: string;
-}
+};
 
 export default function Schedule({
   title,
