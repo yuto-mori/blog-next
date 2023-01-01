@@ -4,4 +4,21 @@
 *******************************************************************************/
 .layout {
   display: grid;
+  @include G.MQ_ABOVE_MD {
+    grid-template:
+      'area01 area02' auto/
+      calc(736 / 1120 * 100%) auto;
+    column-gap: 40px;
+    max-width: var(--content-width);
+    > *:first-child {
+      grid-area: area01;
+    }
+    > *:nth-child(2) {
+      grid-area: area02;
+      justify-self: end;
+      > * {
+        max-width: 304px;
+      }
+    }
+  }
 }

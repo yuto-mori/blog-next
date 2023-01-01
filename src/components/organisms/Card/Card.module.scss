@@ -1,0 +1,57 @@
+@use '@/styles/global/' as G;
+/******************************************************************************
+* Card
+*******************************************************************************/
+.card {
+  display: grid;
+  grid-template:
+    'thum' auto
+    'heading' auto
+    'foot' auto /
+    1fr;
+}
+.heading {
+  --font-weight: 700;
+  --font-color: #{G.$FONT_COLOR_PRIMARY};
+  display: -webkit-box;
+  grid-area: heading;
+  overflow: hidden;
+  text-align: justify;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 4;
+  a {
+    color: var(--font-color);
+  }
+  @include G.MQ_ABOVE_MD {
+    --font-size: 20;
+    -webkit-line-clamp: 3;
+  }
+}
+.thum {
+  grid-area: thum;
+}
+.foot {
+  grid-area: foot;
+  --font-size: 12;
+  line-height: 1.2;
+  --left-column: 1fr;
+  --right-column: auto;
+  > * {
+    font-size: var(--font-size);
+  }
+}
+
+.tag {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  dd {
+    a {
+      color: var(--font-color);
+    }
+  }
+}
+
+.date {
+  white-space: nowrap;
+}

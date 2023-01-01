@@ -5,6 +5,14 @@
 /******************************************************************************
  * width
 *******************************************************************************/
+.width-page {
+  width: G.VW(var(--content-width));
+  @include G.MQ_ABOVE_MD {
+    width: 100%;
+    max-width: calc(var(--content-width) * 1px);
+  }
+}
+
 $WIDTH_BOOL: false !default;
 @if $WIDTH_BOOL {
   $WIDTH_LIST: (
@@ -14,7 +22,7 @@ $WIDTH_BOOL: false !default;
     ),
     MD: (
       auto,
-      1000,
+      736,
     ),
   );
   [class*='width'] {

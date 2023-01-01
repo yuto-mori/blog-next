@@ -44,12 +44,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: var(--font-weight);
   overflow-wrap: break-word;
-  @include G.FONT_SP(var(--font-size));
-  @include G.MQ_ABOVE_MD {
-    @include G.FONT_PC(var(--font-size));
-  }
 }
 #root,
 #__next {

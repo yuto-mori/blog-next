@@ -21,18 +21,14 @@
 }
 
 .l-content {
-  --content-width: 336;
+  --content-width: 100%;
   width: G.VW(var(--content-width));
   margin-right: auto;
   margin-left: auto;
-  @include G.MQ_ABOVE_MD {
-    --content-width: 1124;
-    width: 100%;
-    max-width: calc(var(--content-width) * 1px);
-  }
 }
 .l-inner {
-  width: 100%;
+  --content-width: 100%;
+  width: G.VW(var(--content-width));
   margin-right: auto;
   margin-left: auto;
 }
