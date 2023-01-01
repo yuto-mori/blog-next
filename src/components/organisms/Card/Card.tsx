@@ -3,25 +3,40 @@ import Link from 'next/link';
 import { Img } from '@/components/atoms/Img/Img';
 import styles from '@/components/organisms/Card/Card.module.scss';
 
-export function Card() {
+type props = {
+  title: string;
+  url: string;
+  hero: hero;
+};
+
+type hero = {
+  url: string;
+  width: number;
+  height: number;
+};
+
+export function Card(item: props) {
+  const getHeroUrl = (url: string) => {
+    const [extension] = url.split('.').reverse();
+
+    return {
+      url: url.replace(`.${extension}`, ''),
+      extension: extension,
+    };
+  };
   return (
-    <div className={`${styles.card}`}>
+    <article className={`${styles.card}`}>
       <h2 className={`${styles.heading} md:mgt-16 mgt-16`}>
-        <Link href="">
-          【感想】海外ドラマ『ブラック・ミラー シーズン3-1「
-          ランク社会」』他者の評価によっては、生きることすら困難になる世界で生きるということ
-        </Link>
+        <Link href="">{item.title}</Link>
       </h2>
       <div className={styles.thum}>
         <Link href="">
           <Img
-            src={
-              'https://images.microcms-assets.io/assets/c24b191df6f04ce0ba60304361200e21/c6cdc8c38cb14b93a4df704a337d220d/eldenring0'
-            }
-            extension={'webp'}
+            src={getHeroUrl(item.hero.url).url}
+            extension={getHeroUrl(item.hero.url).extension}
             alt={''}
-            width={{ pc: 640 }}
-            height={{ pc: 360 }}
+            width={{ pc: item.hero.width }}
+            height={{ pc: item.hero.height }}
             loading={'lazy'}
           />
         </Link>
@@ -37,6 +52,6 @@ export function Card() {
           <time dateTime="">2020年5月16日</time>
         </p>
       </div>
-    </div>
+    </article>
   );
 }

@@ -15,8 +15,25 @@ export async function getPostBySlug(slug: string) {
     });
     return post.contents[0];
   } catch (err) {
-    console.log('-- getPostBySlug--');
+    console.log('~~ getPostBySlug ~~');
     console.log(err);
     // post.contents の文字を間違えたらエラーが出た
+  }
+}
+
+export async function getAllPosts(limit = 100) {
+  try {
+    const posts = await client.get({
+      endpoint: 'blogs',
+      queries: {
+        fields: 'title,slug,hero',
+        orders: '-publishDate',
+        limit: limit,
+      },
+    });
+    return posts.contents;
+  } catch (err) {
+    console.log('~~ getAllPosts ~~');
+    console.log(err);
   }
 }

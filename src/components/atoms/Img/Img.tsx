@@ -8,11 +8,13 @@ type props = {
 };
 
 type width = {
-  pc: number;
+  pc?: number;
+  sp?: number;
 };
 
 type height = {
-  pc: number;
+  pc?: number;
+  sp?: number;
 };
 
 export function Img({ src, alt, extension, width, height, loading }: props) {
