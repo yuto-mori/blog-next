@@ -7,7 +7,14 @@ type props = {
 export function TextWrap({ textArray, addClasses }: props) {
   return (
     <div
-      className={`m-text-wrap ${addClasses ? [...addClasses].join(' ') : ''}`}
+      className={`m-text-wrap ${
+        addClasses
+          ? new Intl.ListFormat('en', {
+              style: 'narrow',
+              type: 'unit',
+            }).format([...addClasses])
+          : ''
+      }`}
     >
       {textArray.map((text, i) => {
         return <Text text={text} key={i} />;

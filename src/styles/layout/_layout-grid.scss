@@ -1,0 +1,164 @@
+@use '@/styles/global/' as G;
+@use 'sass:math';
+@use 'sass:map';
+@use 'sass:list';
+
+@mixin GET_GAP($LIST_TYPE, $VAR_PROP) {
+  $NAME: if($VAR_PROP == 'column', 'col-gap', 'row-gap');
+  @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
+    @each $GAP_KEY, $MQ_LIST in $LIST_TYPE {
+      @if $KEY == $GAP_KEY {
+        @each $MQ_KEY, $PROPERTY_LIST in $MQ_LIST {
+          @if $KEY == DEFAULT {
+            @if $MQ_KEY == vw {
+              @each $NUM in $PROPERTY_LIST {
+                @if $NUM {
+                  [class*='is-#{$NAME}'] {
+                    &[class*='#{$NAME}-#{$NUM}'] {
+                      --#{$VAR_PROP}-gap: #{G.VW($NUM * G.$SP_WIDTH_SCALE)};
+                    }
+                  }
+                }
+              }
+            }
+          } @else {
+            @include G.MQ_ORIGINAL($VALUE) {
+              @if $MQ_KEY == px {
+                @each $NUM in $PROPERTY_LIST {
+                  @if $NUM {
+                    [class*='#{to-lower-case($KEY)}\:is-#{$NAME}'] {
+                      &[class*='#{$NAME}-#{$NUM}'] {
+                        --#{$VAR_PROP}-gap: #{$NUM}px;
+                      }
+                    }
+                  }
+                }
+              } @else if $MQ_KEY == '%' {
+                @each $NUM in $PROPERTY_LIST {
+                  @if $NUM {
+                    [class*='#{to-lower-case($KEY)}\:is-#{$NAME}'] {
+                      &[class*='#{$NAME}-num-fr#{$NUM}'] {
+                        --#{$VAR_PROP}-gap: calc(
+                          #{$NUM} / var(--content-width) * 100%
+                        );
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+$GRID_BOOL: false !default;
+@if $GRID_BOOL {
+  /* ---------------------------------------------------------
+ * layout-grid
+--------------------------------------------------------- */
+  // grid の カラムの最大個数
+  $COLUMNS_NUM_LIST: (
+    DEFAULT: (
+      'free',
+      2,
+    ),
+    MD: (
+      'free',
+      2,
+    ),
+  );
+
+  $COLUMN_GAP_LIST: (
+    DEFAULT: (
+      'vw': (
+        10,
+      ),
+    ),
+    MD: (
+      'px': (
+        null,
+        20,
+      ),
+      '%': (
+        null,
+        20,
+      ),
+    ),
+  );
+
+  $ROW_GAP_LIST: (
+    DEFAULT: (
+      'vw': (
+        null,
+        10,
+      ),
+    ),
+    MD: (
+      'px': (
+        null,
+        20,
+      ),
+    ),
+  );
+
+  // [class*='is-free-col'][class*='col-2'] {
+  //   grid-template-columns: var(--left-column) var(--right-column);
+  // }
+  // [class*='md\:is-free-col'][class*='col-2'] {
+  //   grid-template-columns: var(--left-column) var(--right-column);
+  // }
+
+  @each $KEY, $VALUE in G.$BLAKE_POINT_LIST {
+    @each $COLUMNS_NUM_KEY, $NUM_LIST in $COLUMNS_NUM_LIST {
+      @if $KEY == $COLUMNS_NUM_KEY {
+        @if $KEY == DEFAULT {
+          [class*='is-col'] {
+            grid-template-columns: repeat(
+              var(--column-number, 1),
+              var(--column-width, 1fr)
+            );
+          }
+          @each $NUM in $NUM_LIST {
+            @if $NUM != 'free' {
+              .is-col-#{$NUM} {
+                --column-number: #{$NUM};
+                --column-width: 1fr;
+              }
+            } @else {
+              .is-free-col-2 {
+                grid-template-columns: var(--left-column) var(--right-column);
+              }
+            }
+          }
+        } @else {
+          @include G.MQ_ORIGINAL($VALUE) {
+            [class*='#{to-lower-case($KEY)}\:is-col'] {
+              grid-template-columns: repeat(
+                var(--column-number, 1),
+                var(--column-width, 1fr)
+              );
+            }
+            @each $NUM in $NUM_LIST {
+              @if $NUM != 'free' {
+                .#{to-lower-case($KEY)}\:is-col-#{$NUM} {
+                  --column-number: #{$NUM};
+                  --column-width: 1fr;
+                }
+              } @else {
+                .#{to-lower-case($KEY)}\:is-free-col-2 {
+                  grid-template-columns: var(--left-column) var(--right-column);
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+  @include GET_GAP($COLUMN_GAP_LIST, 'column');
+  @include GET_GAP($ROW_GAP_LIST, 'row');
+}

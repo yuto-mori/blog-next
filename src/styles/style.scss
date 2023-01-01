@@ -2,7 +2,12 @@
 @use '@/styles/foundation';
 // **foundation**
 @use '@/styles/layout'
-  with($MARGIN_BOOL: true, $PADDING_BOOL: true, $WIDTH_BOOL: true);
+  with(
+    $MARGIN_BOOL: true,
+    $PADDING_BOOL: true,
+    $WIDTH_BOOL: true,
+    $GRID_BOOL: true
+  );
 
 // **utility**
 @use '@/styles/utility';

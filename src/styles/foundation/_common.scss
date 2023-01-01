@@ -16,3 +16,10 @@ body {
     @include G.FONT_PC(var(--font-size));
   }
 }
+
+.page-blog {
+  border-top: 1px solid var(--color-main);
+  @include G.MQ_ABOVE_MD {
+    border-width: 4px;
+  }
+}

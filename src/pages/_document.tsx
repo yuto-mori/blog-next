@@ -8,7 +8,7 @@ export default function Document() {
   return (
     <Html lang={siteLang}>
       <Head />
-      <body>
+      <body className="page-blog">
         <Main />
         <NextScript />
       </body>
