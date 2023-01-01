@@ -14,7 +14,8 @@
               @each $NUM in $PROPERTY_LIST {
                 @if $NUM {
                   [class*='is-#{$NAME}'] {
-                    &[class*='#{$NAME}-#{$NUM}'] {
+                    #{$VAR_PROP}-gap: var(--#{$VAR_PROP}-gap);
+                    &.is-#{$NAME}-#{$NUM} {
                       --#{$VAR_PROP}-gap: #{G.VW($NUM * G.$SP_WIDTH_SCALE)};
                     }
                   }
@@ -27,7 +28,8 @@
                 @each $NUM in $PROPERTY_LIST {
                   @if $NUM {
                     [class*='#{to-lower-case($KEY)}\:is-#{$NAME}'] {
-                      &[class*='#{$NAME}-#{$NUM}'] {
+                      #{$VAR_PROP}-gap: var(--#{$VAR_PROP}-gap);
+                      &.#{to-lower-case($KEY)}\:is-#{$NAME}-#{$NUM} {
                         --#{$VAR_PROP}-gap: #{$NUM}px;
                       }
                     }
@@ -37,7 +39,8 @@
                 @each $NUM in $PROPERTY_LIST {
                   @if $NUM {
                     [class*='#{to-lower-case($KEY)}\:is-#{$NAME}'] {
-                      &[class*='#{$NAME}-num-fr#{$NUM}'] {
+                      #{$VAR_PROP}-gap: var(--#{$VAR_PROP}-gap);
+                      &.#{to-lower-case($KEY)}\:is-#{$NAME}-num-fr-#{$NUM} {
                         --#{$VAR_PROP}-gap: calc(
                           #{$NUM} / var(--content-width) * 100%
                         );
