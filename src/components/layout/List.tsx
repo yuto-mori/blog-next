@@ -1,8 +1,11 @@
 import { cloneElement, ReactElement } from 'react';
+
+import { addClass } from '@/utils/common';
 // cloneElement を使うときは children の型は ReactElement しか使えないので、ここだけ ReactNode ではない
 
 type props = {
   posts: posts;
+  addClasses: string[];
   children: ReactElement;
 };
 type posts = {
@@ -27,11 +30,11 @@ type hero = {
   width: number;
 };
 
-export function List({ posts, children }: props) {
+export function List({ posts, addClasses, children }: props) {
   const newChildren = (item: { title: string; slug: string; hero: hero }) =>
     cloneElement(children, item);
   return (
-    <ul className="d-grid md:is-col-2 md:is-col-gap-20">
+    <ul className={`d-grid ${addClasses ? addClass(addClasses) : ''}`}>
       {posts.map((item) => (
         <li key={item.slug}>{newChildren(item)}</li>
       ))}

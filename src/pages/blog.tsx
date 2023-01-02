@@ -34,7 +34,15 @@ export default function BlogTop({ posts }: props) {
     <>
       <div>
         <Meta pageTitle="ブログ" pageDesc="ブログ記事一覧" />
-        <List posts={posts}>
+        <List
+          posts={posts}
+          addClasses={[
+            'md:is-col-2',
+            'md:is-col-gap-20',
+            'is-row-gap-40',
+            'md:is-row-gap-56',
+          ]}
+        >
           <Card
             title={''}
             url={''}

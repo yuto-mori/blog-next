@@ -25,6 +25,10 @@
   width: G.VW(var(--content-width));
   margin-right: auto;
   margin-left: auto;
+  @include G.MQ_ABOVE_MD {
+    width: 100%;
+    max-width: calc((var(--content-width)) * 1px);
+  }
 }
 .l-inner {
   --content-width: 100%;
