@@ -4,7 +4,7 @@ import { Meta } from '@/components/common/Meta';
 import { List } from '@/components/layout/List';
 import { Card } from '@/components/organisms/Card/Card';
 import { Pagination } from '@/components/organisms/Pagination/Pagination';
-import { getAllPosts } from '@/lib/api';
+import { getAllPosts, getPaths } from '@/lib/api';
 import { perPage } from '@/utils/common';
 
 type props = {
@@ -32,7 +32,7 @@ type hero = {
   height: number;
   width: number;
 };
-export default function BlogTop({ posts, totalCount }: props) {
+export default function BlogPageNumber({ posts, totalCount }: props) {
   return (
     <>
       <div>
@@ -62,8 +62,16 @@ export default function BlogTop({ posts, totalCount }: props) {
   );
 }
 
-export async function getStaticProps() {
-  const posts = await getAllPosts(perPage(), 0);
+export async function getStaticPaths() {
+  const paths = await getPaths(perPage);
+  return { paths, fallback: false };
+}
+
+export async function getStaticProps(context: { params: { number: number } }) {
+  const posts = await getAllPosts(
+    perPage(),
+    (context.params.number - 1) * perPage()
+  );
 
   return {
     props: {

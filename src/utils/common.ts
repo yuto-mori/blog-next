@@ -4,3 +4,5 @@ export function addClass(addClasses: string[]) {
     type: 'unit',
   }).format([...addClasses]);
 }
+
+export const perPage = (): number => 2;

@@ -21,17 +21,36 @@ export async function getPostBySlug(slug: string) {
   }
 }
 
-export async function getAllPosts(limit = 100) {
+export async function getPaths(perPage: () => number) {
+  try {
+    const repos = await client.get({ endpoint: 'blogs' });
+    const range = (start: number, end: number) =>
+      [...Array(end - start + 1)].map((_, i) => start + i);
+
+    const paths = range(1, Math.ceil(repos.totalCount / perPage())).map(
+      (repo) => `/blog/page/${repo}`
+    );
+
+    return paths;
+  } catch (err) {
+    console.log('~~ getPath ~~');
+    console.log(err);
+  }
+}
+
+export async function getAllPosts(limit: number, offset: number) {
   try {
     const posts = await client.get({
       endpoint: 'blogs',
       queries: {
-        fields: 'title,slug,hero',
+        // fields: 'title,slug,hero',
         orders: '-publishDate',
+        offset: offset,
         limit: limit,
+        // https://document.microcms.io/content-api/get-list-contents
       },
     });
-    return posts.contents;
+    return posts;
   } catch (err) {
     console.log('~~ getAllPosts ~~');
     console.log(err);
