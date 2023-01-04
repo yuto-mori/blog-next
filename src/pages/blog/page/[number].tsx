@@ -48,7 +48,7 @@ export default function BlogPageNumber({ posts, totalCount }: props) {
         >
           <Card
             title={''}
-            url={''}
+            slug={''}
             hero={{
               url: '',
               width: 0,

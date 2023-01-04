@@ -5,7 +5,7 @@ import styles from '@/components/organisms/Card/Card.module.scss';
 
 type props = {
   title: string;
-  url: string;
+  slug: string;
   hero: hero;
 };
 
@@ -27,10 +27,10 @@ export function Card(item: props) {
   return (
     <article className={`${styles.card}`}>
       <h2 className={`${styles.heading} md:mgt-16 mgt-16`}>
-        <Link href="">{item.title}</Link>
+        <Link href={`/blog/${item.slug}`}>{item.title}</Link>
       </h2>
       <div className={styles.thum}>
-        <Link href="">
+        <Link href={`/blog/${item.slug}`}>
           <Img
             src={getHeroUrl(item.hero.url).url}
             extension={getHeroUrl(item.hero.url).extension}

@@ -48,7 +48,7 @@ export default function BlogTop({ posts, totalCount }: props) {
         >
           <Card
             title={''}
-            url={''}
+            slug={''}
             hero={{
               url: '',
               width: 0,
