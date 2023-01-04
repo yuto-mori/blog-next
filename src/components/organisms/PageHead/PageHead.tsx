@@ -13,7 +13,7 @@ export function PageHead() {
           '「アイディアをひらめいた!」と叫ぶために、映画の感想を通して物語作りに役立つことを書いてます！　マンガ・小説などの作成の参考にしてください！　webのことも書くかも……。',
         ]}
       />
-      <Link href="/blog/schedule">aaa</Link>
+      <Link href="/blog02/schedule">aaa</Link>
     </div>
   );
 }
