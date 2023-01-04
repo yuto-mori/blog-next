@@ -14,7 +14,7 @@ export function Pagination({ totalCount }: props) {
     <ul>
       {range(1, Math.ceil(totalCount / perPage())).map((number, index) => (
         <li key={index}>
-          <Link href={`/blog02/page/${number}`}>{number}</Link>
+          <Link href={`/article/page/${number}`}>{number}</Link>
         </li>
       ))}
     </ul>

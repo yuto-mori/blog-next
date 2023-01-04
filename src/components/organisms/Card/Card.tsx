@@ -27,10 +27,10 @@ export function Card(item: props) {
   return (
     <article className={`${styles.card}`}>
       <h2 className={`${styles.heading} md:mgt-16 mgt-16`}>
-        <Link href={`/blog02/${item.slug}`}>{item.title}</Link>
+        <Link href={`/article/${item.slug}`}>{item.title}</Link>
       </h2>
       <div className={styles.thum}>
-        <Link href={`/blog02/${item.slug}`}>
+        <Link href={`/article/${item.slug}`}>
           <Img
             src={getHeroUrl(item.hero.url).url}
             extension={getHeroUrl(item.hero.url).extension}

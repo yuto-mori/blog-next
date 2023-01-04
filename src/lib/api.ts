@@ -28,7 +28,7 @@ export async function getPaths(perPage: () => number) {
       [...Array(end - start + 1)].map((_, i) => start + i);
 
     const paths = range(1, Math.ceil(repos.totalCount / perPage())).map(
-      (repo) => `/blog02/page/${repo}`
+      (repo) => `/article/page/${repo}`
     );
 
     return paths;

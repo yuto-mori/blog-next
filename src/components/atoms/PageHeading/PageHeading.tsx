@@ -7,7 +7,7 @@ type props = {
 };
 export function PageHeading({ heading }: props) {
   return (
-    <Link href="/blog02/">
+    <Link href="/article/">
       <h1 className={styles.heading}>{heading}</h1>
     </Link>
   );
