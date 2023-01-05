@@ -1,6 +1,8 @@
 import { cloneElement, ReactElement } from 'react';
 
-import { addClass } from '@/utils/common';
+import { useAddClass } from '@/hooks/useAddClass';
+
+// import { addClass } from '@/utils/common';
 // cloneElement を使うときは children の型は ReactElement しか使えないので、ここだけ ReactNode ではない
 
 type props = {
@@ -31,6 +33,8 @@ type hero = {
 };
 
 export function List({ posts, addClasses, children }: props) {
+  const { addClass } = useAddClass();
+
   const newChildren = (item: { title: string; slug: string; hero: hero }) =>
     cloneElement(children, item);
   return (
