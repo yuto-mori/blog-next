@@ -14,23 +14,33 @@ type props = {
 type posts = {
   map(
     arg0: ({
+      publishDate,
       title,
       slug,
       hero,
+      tags,
     }: {
+      publishDate: string;
       title: string;
       slug: string;
       hero: hero;
+      tags: tag[];
     }) => JSX.Element
   ): ReactElement;
+  publishDate: string;
   title: string;
   slug: string;
   hero: hero;
+  tags: tag[];
 };
 type hero = {
   url: string;
   height: number;
   width: number;
+};
+type tag = {
+  tagName: string;
+  slug: string;
 };
 export default function BlogTop({ posts, totalCount }: props) {
   return (
@@ -47,8 +57,15 @@ export default function BlogTop({ posts, totalCount }: props) {
           ]}
         >
           <Card
+            tags={[
+              {
+                name: '',
+                slug: '',
+              },
+            ]}
             title={''}
             slug={''}
+            publishDate={''}
             hero={{
               url: '',
               width: 0,

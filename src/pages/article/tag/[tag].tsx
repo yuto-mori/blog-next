@@ -4,8 +4,7 @@ import { Meta } from '@/components/common/Meta';
 import { List } from '@/components/layout/List';
 import { Card } from '@/components/organisms/Card/Card';
 import { Pagination } from '@/components/organisms/Pagination/Pagination';
-import { getAllPosts, getPaths } from '@/lib/api';
-import { perPage } from '@/utils/common';
+import { getAllPostsByTag, getAllTags, getPaths } from '@/lib/api';
 
 type props = {
   posts: posts;
@@ -42,7 +41,7 @@ type tag = {
   tagName: string;
   slug: string;
 };
-export default function BlogTop({ posts, totalCount }: props) {
+export default function Tag({ posts, totalCount }: props) {
   return (
     <>
       <div>
@@ -78,22 +77,24 @@ export default function BlogTop({ posts, totalCount }: props) {
     </>
   );
 }
-
-export async function getStaticPaths() {
-  const paths = await getPaths('page', 'article/page', perPage());
+export const getStaticPaths = async () => {
+  const paths = await getPaths('tag', 'article/tag');
   return { paths, fallback: false };
-}
+};
 
-export async function getStaticProps(context: { params: { number: number } }) {
-  const posts = await getAllPosts(
-    perPage(),
-    (context.params.number - 1) * perPage()
-  );
+export async function getStaticProps(context: { params: { tag: string } }) {
+  const tagSlug = context.params.tag;
 
-  return {
-    props: {
-      posts: posts.contents,
-      totalCount: posts.totalCount,
-    },
-  };
+  const allTags: { slug: string; id: string }[] = await getAllTags();
+  const tag = allTags.find(({ slug }) => slug === tagSlug);
+
+  if (tag) {
+    const posts = await getAllPostsByTag(tag.id);
+    return {
+      props: {
+        posts: posts?.posts,
+        totalCount: posts?.totalCount,
+      },
+    };
+  }
 }

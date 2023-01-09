@@ -5,6 +5,7 @@
 .heading {
   --font-size: 24;
   --font-weight: 700;
+  width: fit-content;
   line-height: 1;
   text-align: center;
   @include G.MQ_ABOVE_MD {

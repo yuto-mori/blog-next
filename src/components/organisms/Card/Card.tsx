@@ -4,9 +4,11 @@ import { Img } from '@/components/atoms/Img/Img';
 import styles from '@/components/organisms/Card/Card.module.scss';
 
 type props = {
+  publishDate: string;
   title: string;
   slug: string;
   hero: hero;
+  tags: tag[];
 };
 
 type hero = {
@@ -15,10 +17,19 @@ type hero = {
   height: number;
 };
 
+type tag = {
+  name: string;
+  slug: string;
+};
+
 export function Card(item: props) {
+  const date = new Date(item.publishDate);
+  const year = date.getFullYear();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
   const getHeroUrl = (url: string) => {
     const [extension] = url.split('.').reverse();
-
     return {
       url: url.replace(`.${extension}`, ''),
       extension: extension,
@@ -45,11 +56,15 @@ export function Card(item: props) {
         <dl className={`${styles.tag}`}>
           <dt>タグ：</dt>
           <dd>
-            <Link href="">ブラックミラー</Link>
+            <Link href={`/article/tag/${item.tags[0].slug}`}>
+              {item.tags[0].name}
+            </Link>
           </dd>
         </dl>
         <p className={`${styles.date}`}>
-          <time dateTime="">2020年5月16日</time>
+          <time
+            dateTime={`${year}-${month}-${day}`}
+          >{`${year}年${month}月${day}`}</time>
         </p>
       </div>
     </article>

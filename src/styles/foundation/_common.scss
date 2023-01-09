@@ -17,6 +17,9 @@ body {
     @include G.FONT_PC(var(--font-size));
   }
 }
+a {
+  color: var(--font-color);
+}
 h1,
 h2,
 h3,

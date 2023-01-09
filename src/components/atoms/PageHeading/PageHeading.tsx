@@ -7,8 +7,8 @@ type props = {
 };
 export function PageHeading({ heading }: props) {
   return (
-    <Link href="/article/">
-      <h1 className={styles.heading}>{heading}</h1>
-    </Link>
+    <h1 className={styles.heading}>
+      <Link href="/article/">{heading}</Link>
+    </h1>
   );
 }
